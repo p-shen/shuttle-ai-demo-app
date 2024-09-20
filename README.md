@@ -1,13 +1,5 @@
----
-title: Shuttle Ai Groq Demo
-emoji: 🦀
-colorFrom: gray
-colorTo: gray
-sdk: gradio
-sdk_version: 4.41.0
-app_file: app.py
-pinned: false
-license: apache-2.0
----
+# Demo app in Chinese for Shuttle AI
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+Hosting my own gradio app on EC2 instead of huggingface spaces.
+
+<https://abdulrahman-almutlaq.medium.com/deploying-gradio-on-aws-a-beginners-quick-start-guide-85a01f269945>
