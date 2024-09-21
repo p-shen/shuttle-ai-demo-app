@@ -22,9 +22,9 @@ def write_string_to_json(input_string):
     # Create a dictionary with the input string and ISO formatted datetime
     data = {"content": input_string, "timestamp": current_time.isoformat()}
 
-    # Write the dictionary to a JSON file
-    with open(filename, "w") as file:
-        json.dump(data, file, indent=4)
+    # Write the dictionary to a JSON file with UTF-8 encoding
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
     print(f"String and timestamp written to {filename}")
 
