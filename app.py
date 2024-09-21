@@ -1,11 +1,35 @@
 import gradio as gr
 from groq import Groq
+import json
+from datetime import datetime
 
 import os
 
 API_KEY = os.environ.get("GROQ_API_KEY")
 client = Groq(api_key=API_KEY)
 
+
+def write_string_to_json(input_string):
+    # Get current datetime
+    current_time = datetime.now()
+    
+    # Format datetime for filename
+    filename_time = current_time.strftime("%Y%m%d_%H%M%S")
+    
+    # Create filename using the datetime
+    filename = f"{filename_time}.json"
+    
+    # Create a dictionary with the input string and ISO formatted datetime
+    data = {
+        "content": input_string,
+        "timestamp": current_time.isoformat()
+    }
+    
+    # Write the dictionary to a JSON file
+    with open(filename, 'w') as file:
+        json.dump(data, file, indent=4)
+    
+    print(f"String and timestamp written to {filename}")
 
 def generate_assessment(
     age,
@@ -73,6 +97,9 @@ def generate_assessment(
 
         回答：
     """
+    
+    write_string_to_json(prompt)
+    
     completion = client.chat.completions.create(
         model="llama-3.1-70b-versatile",
         messages=[{"role": "user", "content": prompt}],
